@@ -1,0 +1,66 @@
+[
+	{
+		"name": "Go Forward",
+		"class": "go-forward",
+		"type": "command",
+		"params": [
+			[
+				{
+					"label": "Seconds",
+					"name": "time",
+					"type": "field"
+				},
+				{
+					"label": "Speed",
+					"name": "speed",
+					"type": "slider",
+					"optional": true,
+					"min": 0.0,
+					"max": 1.0
+				}
+			]
+		]
+	},
+	{
+		"name": "Set Heading",
+		"class": "set-heading",
+		"type": "command",
+		"params": [
+			{
+				"label": "Degrees",
+				"name": "heading",
+				"type": "field",
+				"min": 0,
+				"max": 359
+			}
+		]
+	},
+	{
+		"name": "Change LED",
+		"class": "change-led",
+		"type": "command",
+		"params": [
+			{
+				"title": "Red",
+				"name": "red",
+				"type": "field",
+				"min": 0,
+				"max": 255
+			},
+			{
+				"title": "Green",
+				"name": "green",
+				"type": "field",
+				"min": 0,
+				"max": 255
+			},
+			{
+				"title": "Blue",
+				"name": "blue",
+				"type": "field",
+				"min": 0,
+				"max": 255
+			}
+		]
+	}
+]
