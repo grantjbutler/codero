@@ -6,14 +6,14 @@
 		"params": [
 			[
 				{
-					"label": "Seconds",
+					"title": "Seconds",
 					"name": "time",
-					"type": "field"
+					"type": "number"
 				},
 				{
-					"label": "Speed",
+					"title": "Speed",
 					"name": "speed",
-					"type": "slider",
+					"type": "number",
 					"optional": true,
 					"min": 0.0,
 					"max": 1.0
@@ -27,9 +27,9 @@
 		"type": "command",
 		"params": [
 			{
-				"label": "Degrees",
+				"title": "Degrees",
 				"name": "heading",
-				"type": "field",
+				"type": "number",
 				"min": 0,
 				"max": 359
 			}
@@ -43,21 +43,21 @@
 			{
 				"title": "Red",
 				"name": "red",
-				"type": "field",
+				"type": "number",
 				"min": 0,
 				"max": 255
 			},
 			{
 				"title": "Green",
 				"name": "green",
-				"type": "field",
+				"type": "number",
 				"min": 0,
 				"max": 255
 			},
 			{
 				"title": "Blue",
 				"name": "blue",
-				"type": "field",
+				"type": "number",
 				"min": 0,
 				"max": 255
 			}

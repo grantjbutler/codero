@@ -11,41 +11,41 @@ $(document).ready(function() {
 	}
 	
 	var exampleColor = "#00f";
-	var sourceEndpoint = {
-		endpoint:"Dot",
+	var SourceEndpoint = {
+		endpoint:"Rectangle",
 		paintStyle:{ width:10, height:10, fillStyle:exampleColor },
 		isSource:true,
 		reattach:true,
-		scope:"source",
+		connector: "Straight",
 		connectorStyle : {
 			lineWidth:5,
 			strokeStyle:exampleColor,
 		},
 		isTarget:false,
+		anchor: 'RightMiddle'
 	};
 	var TargetEndpoint = {
 		endpoint:"Rectangle",
 		paintStyle:{ width:15, height:15, fillStyle:exampleColor },
 		isSource:false,
 		reattach:true,
-		scope:"target",
+		connector: "Straight",
 		connectorStyle : {
-			gradient:{stops:[[0, exampleColor], [0.5, "#09098e"], [1, exampleColor]]},
 			lineWidth:5,
 			strokeStyle:exampleColor,
-			dashstyle:"2 2"
 		},
 		isTarget:true,
+		anchor: 'LeftMiddle'
 	};
 	
-	jsPlumb.addEndpoint('start-block', { anchor: 'RightMiddle' }, sourceEndpoint);
+	jsPlumb.addEndpoint('start-block', SourceEndpoint);
 	
 	var socket = io.connect('http://localhost');
 	socket.on('blocks', function (data) {
 		var compGrid = $('#components .grid');
 		
 		data.forEach(function(item) {
-			compGrid.append($('<div class="block ' + item.class + '"><h6>' + item.name + '</div>'));
+			compGrid.append($('<div class="block block-class-' + item.class + ' block-type-' + item.type + '"><h6>' + item.name + '</div>'));
 		});
 		
 		compGrid.find('.block').draggable({
@@ -67,8 +67,8 @@ $(document).ready(function() {
 				view.removeClass('ui-draggable-dragging');
 				
 				setTimeout(function() {
-					jsPlumb.addEndpoint(blockID, { anchor: 'LeftMiddle' }, TargetEndpoint);
-					jsPlumb.addEndpoint(blockID, { anchor: 'RightMiddle' }, sourceEndpoint);
+					jsPlumb.addEndpoint(blockID, TargetEndpoint);
+					jsPlumb.addEndpoint(blockID, SourceEndpoint);
 				}, 0);
 			}
 			
@@ -84,5 +84,42 @@ $(document).ready(function() {
 		}
 	});
 	
-	socket.emit('blocks');	
+	socket.emit('blocks');
+	
+	window.coderoRun = function() {
+		var steps = [];
+		
+		var connections = jsPlumb.getConnections({
+			source: 'start-block'
+		});
+		
+		var connectionId = connections[0].id;
+		var targetId = connections[0].targetId;
+		
+		while(targetId != null) {
+			var elm = $('#' + targetId);
+			var params = elm.data('params');
+			
+			var step = {};
+			step.id = targetId;
+			step.class = (/ block-class-([^ ]+) /.exec(elm.attr('class')))[1];
+			step.params = params;
+			
+			steps.push(step);
+			
+			connections = jsPlumb.getConnections({
+				source: targetId
+			});
+			
+			if(!connections || !connections.length) {
+				break;
+			}
+			
+			targetId = connections[0].targetId;
+		}
+		
+		console.log(steps);
+				
+/* 		socket.emit('run', steps); */
+	}
 });
