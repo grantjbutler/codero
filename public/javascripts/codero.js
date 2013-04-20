@@ -10,8 +10,8 @@ $(document).ready(function() {
 	         s4() + '-' + s4() + s4() + s4();
 	}
 	
-/* 	var  */
 	
+		
 	var socket = io.connect('http://localhost');
 	socket.on('blocks', function (data) {
 		var compGrid = $('#components .grid');
@@ -20,28 +20,39 @@ $(document).ready(function() {
 			compGrid.append($('<div class="block ' + item.class + '"><h6>' + item.name + '</div>'));
 		});
 		
-		compGrid.find('.block').draggable();
-/*
-		compGrid.shapeshift({
-			dragClone: true
+		compGrid.find('.block').draggable({
+			helper: 'clone'
 		});
-*/
 	});
 	
-/*
-	$('#stage .grid').shapeshift({
-		colWidth: 50,
-		align: 'left',
-		cloneSelected: true
+	$('#stage .grid').droppable({
+		tolerance: 'intersect',
+		drop: function(event, ui) {
+			var gridView = $(this);
+			var view = ui.draggable;
+			
+			if(ui.helper[0] != view[0]) {
+				view = ui.helper.clone();
+				view.attr('id', 'block-' + guid());
+			}
+			
+			var offset = gridView.offset();
+			offset.top = ui.offset.top - offset.top;
+			offset.left = ui.offset.left - offset.left;
+			
+			view.css(offset);
+			view.draggable({
+				start: function(event, ui) {
+					if(event.altKey) {
+						return false;
+					}
+					
+					return true;
+				}
+			});
+			gridView.append(view);
+		}
 	});
-	
-	$('#stage .grid').on('ss-added', function(e, selected) {
-		console.log(selected);
-		selected.id = 'block-' + guid();
-		
-		
-	});
-*/
 	
 	socket.emit('blocks');	
 });
