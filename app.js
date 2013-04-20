@@ -6,10 +6,9 @@
 var express = require('express')
   , socketIO = require('socket.io')
   , routes = require('./routes')
-  , require('./api').api(socketIO)
   , http = require('http')
   , path = require('path')
-  , Sphero = require('Sphero').Sphero;
+  , Sphero = require('node-sphero').Sphero;
 
 var sphero = new Sphero();
 
@@ -36,6 +35,7 @@ sphero.on('connect', function(ball) {
 	
 	var server = http.createServer(app);
 	socketIO.listen(server);
+	require('./api').api(socketIO, sphero);
 	server.listen(app.get('port'), function(){
 	  console.log("Express server listening on port " + app.get('port'));
 	});
