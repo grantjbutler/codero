@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	var blocks = [];
 	function s4() {
 	  return Math.floor((1 + Math.random()) * 0x10000)
 	             .toString(16)
@@ -11,42 +12,45 @@ $(document).ready(function() {
 	}
 	
 	var exampleColor = "#00f";
-	var SourceEndpoint = {
-		endpoint:"Rectangle",
+	var sourceEndpoint = {
+		endpoint:"Dot",
 		paintStyle:{ width:10, height:10, fillStyle:exampleColor },
 		isSource:true,
 		reattach:true,
-		connector: "Straight",
+		scope:"source",
 		connectorStyle : {
 			lineWidth:5,
 			strokeStyle:exampleColor,
 		},
 		isTarget:false,
-		anchor: 'RightMiddle'
 	};
 	var TargetEndpoint = {
 		endpoint:"Rectangle",
 		paintStyle:{ width:15, height:15, fillStyle:exampleColor },
 		isSource:false,
 		reattach:true,
-		connector: "Straight",
+		scope:"target",
 		connectorStyle : {
+			gradient:{stops:[[0, exampleColor], [0.5, "#09098e"], [1, exampleColor]]},
 			lineWidth:5,
 			strokeStyle:exampleColor,
+			dashstyle:"2 2"
 		},
 		isTarget:true,
-		anchor: 'LeftMiddle'
 	};
 	
-	jsPlumb.addEndpoint('start-block', SourceEndpoint);
+	jsPlumb.addEndpoint('start-block', { anchor: 'RightMiddle' }, sourceEndpoint);
 	
 	var socket = io.connect('http://localhost');
 	socket.on('blocks', function (data) {
 		var compGrid = $('#components .grid');
 		
 		data.forEach(function(item) {
-			compGrid.append($('<div class="block block-class-' + item.class + ' block-type-' + item.type + '"><h6>' + item.name + '</div>'));
+			compGrid.append($('<div class="block ' + item.class + '"><h6>' + item.name + '</div>'));
 		});
+
+		blocks = data;
+
 		
 		compGrid.find('.block').draggable({
 			helper: 'clone'
@@ -67,8 +71,8 @@ $(document).ready(function() {
 				view.removeClass('ui-draggable-dragging');
 				
 				setTimeout(function() {
-					jsPlumb.addEndpoint(blockID, TargetEndpoint);
-					jsPlumb.addEndpoint(blockID, SourceEndpoint);
+					jsPlumb.addEndpoint(blockID, { anchor: 'LeftMiddle' }, TargetEndpoint);
+					jsPlumb.addEndpoint(blockID, { anchor: 'RightMiddle' }, sourceEndpoint);
 				}, 0);
 			}
 			
@@ -83,43 +87,11 @@ $(document).ready(function() {
 			}, 0);
 		}
 	});
-	
-	socket.emit('blocks');
-	
-	window.coderoRun = function() {
-		var steps = [];
-		
-		var connections = jsPlumb.getConnections({
-			source: 'start-block'
-		});
-		
-		var connectionId = connections[0].id;
-		var targetId = connections[0].targetId;
-		
-		while(targetId != null) {
-			var elm = $('#' + targetId);
-			var params = elm.data('params');
-			
-			var step = {};
-			step.id = targetId;
-			step.class = (/ block-class-([^ ]+) /.exec(elm.attr('class')))[1];
-			step.params = params;
-			
-			steps.push(step);
-			
-			connections = jsPlumb.getConnections({
-				source: targetId
-			});
-			
-			if(!connections || !connections.length) {
-				break;
-			}
-			
-			targetId = connections[0].targetId;
+	var paramPane = $('#paramPane');
+	$('block').click(function{
+		$(this).attr('id', data.forEach(function(item){
+			paramPane.append($('<div'))
 		}
-		
-		console.log(steps);
-				
-/* 		socket.emit('run', steps); */
-	}
+	})
+	socket.emit('blocks');	
 });
