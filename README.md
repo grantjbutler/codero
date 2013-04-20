@@ -2,6 +2,8 @@
 
 ## API Docs
 
+**NEEDS TO BE CHANGED TO REFLECT SOCKET.IO IMPLEMENTATION**
+
 ### GET /api/blocks
 
 Returns an array of objects describing a block.
@@ -24,6 +26,6 @@ Data Format:
 
 ### POST /api/execute
 
-__NOT IMPLEMENTED__
+**NOT IMPLEMENTED**
 
 Run JavaScript code to control the Sphero.
