@@ -53,6 +53,13 @@ a {
 /* 	position: absolute; */
 }
 
+#start-block {
+	width: 35px;
+	position: absolute;
+	top: 50px;
+	left: 25px;
+}
+
 .grid {
 	position: relative;
 	width: 100%;
