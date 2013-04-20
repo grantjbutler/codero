@@ -4,21 +4,19 @@
 		"class": "go-forward",
 		"type": "command",
 		"params": [
-			[
-				{
-					"title": "Seconds",
-					"name": "time",
-					"type": "number"
-				},
-				{
-					"title": "Speed",
-					"name": "speed",
-					"type": "number",
-					"optional": true,
-					"min": 0.0,
-					"max": 1.0
-				}
-			]
+			{
+				"title": "Duration",
+				"name": "time",
+				"type": "number"
+			},
+			{
+				"title": "Speed",
+				"name": "speed",
+				"type": "number",
+				"optional": true,
+				"min": 0.0,
+				"max": 1.0
+			}
 		]
 	},
 	{

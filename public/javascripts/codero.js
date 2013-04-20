@@ -10,6 +10,8 @@ $(document).ready(function() {
 	         s4() + '-' + s4() + s4() + s4();
 	}
 	
+	var blocks = [];
+	
 	var exampleColor = "#00f";
 	var SourceEndpoint = {
 		endpoint:"Rectangle",
@@ -48,6 +50,8 @@ $(document).ready(function() {
 			compGrid.append($('<div class="block block-class-' + item.class + ' block-type-' + item.type + '"><h6>' + item.name + '</div>'));
 		});
 		
+		blocks = data;
+		
 		compGrid.find('.block').draggable({
 			helper: 'clone'
 		});
@@ -70,6 +74,53 @@ $(document).ready(function() {
 					jsPlumb.addEndpoint(blockID, TargetEndpoint);
 					jsPlumb.addEndpoint(blockID, SourceEndpoint);
 				}, 0);
+				
+				view.click(function() {
+					var self = $(this);
+					var blockClass = (/ block-class-([^ ]+) /.exec(self.attr('class')))[1];
+					var paramPane = $('#paramPane');
+					
+					paramPane.empty();
+					
+					if(!self.hasClass('selected')) {
+						$('.block.selected').removeClass('selected');
+						
+						self.addClass('selected');
+						
+						for(var i = 0; i < blocks.length; i++) {
+							var block = blocks[i];
+							
+							if(block['class'] != blockClass) {
+								continue;
+							}
+							
+							block.params.forEach(function(param) {
+								var p = $('<p>' + param.title + ': <input type="' + param.type + '" name="' + param.name + '"></p>');
+								var input = p.find('input');
+								
+								var params = $('#' + blockID).data('params');
+								if(params && (param.name in params)) {
+									input.val(params[param.name]);
+								}
+								
+								input.blur(function() {
+									var params = $('#' + blockID).data('params');
+									
+									if(!params) {
+										params = {};
+									}
+									
+									params[param.name] = $(this).val();
+									
+									$('#' + blockID).data('params', params);
+								});
+								paramPane.append(p);
+							});
+						}
+					} else {
+						self.removeClass('selected');
+					}
+				});
 			}
 			
 			var offset = gridView.offset();
@@ -84,11 +135,22 @@ $(document).ready(function() {
 		}
 	});
 	
-/* 	socket.on('ready', function() { */
-		socket.emit('blocks');
-/* 	}); */
+	socket.emit('blocks');
 	
-	window.coderoRun = function() {
+	var running = false;
+	
+	socket.on('run', function(block) {
+		$('.active').removeClass('active');
+		$('#' + block.block).addClass('active');
+	});
+	
+	socket.on('done', function() {
+		$('.active').removeClass('active');
+		
+		running = false;
+	});
+	
+	function coderoRun() {
 		var steps = [];
 		
 		var connections = jsPlumb.getConnections({
@@ -123,5 +185,15 @@ $(document).ready(function() {
 		console.log(steps);
 				
 		socket.emit('run', steps);
+		
+		running = true;
 	}
+	
+	$('#run').click(function() {
+		if(running) {
+			
+		} else {
+			coderoRun();
+		}
+	});
 });

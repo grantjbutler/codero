@@ -76,7 +76,7 @@ Runner.Blocks['set-heading'] = function(block, sphero, runner, cb) {
 };
 
 Runner.Blocks['change-led'] = function(block, sphero, runner, cb) {
-	sphero.set(block.param.red, block.param.green, block.param.blue, true, function() {
+	sphero.setRGBLED(block.params.red, block.params.green, block.params.blue, true, function() {
 		cb();
 	});
 };

@@ -6,8 +6,6 @@ var fs = require('fs'),
 exports.API = function(io, sphero) {
 	io.sockets.on('connection', function(socket) {
 		socket.on('blocks', function() {
-			console.log('emitting blocks');
-			
 			socket.emit('blocks', allBlocks);
 		});
 		
