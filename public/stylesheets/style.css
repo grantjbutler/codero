@@ -50,10 +50,13 @@ a {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	position: absolute;
+/* 	position: absolute; */
 }
 
+/*
 .grid {
 	position: relative;
 	width: 100%;
+	height: 100%;
 }
+*/

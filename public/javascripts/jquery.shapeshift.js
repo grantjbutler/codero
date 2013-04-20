@@ -39,7 +39,8 @@
       placeholderClass: "ss-placeholder-child",
       originalContainerClass: "ss-original-container",
       currentContainerClass: "ss-current-container",
-      previousContainerClass: "ss-previous-container"
+      previousContainerClass: "ss-previous-container",
+      cloneSelected: false
     };
     Plugin = (function() {
 

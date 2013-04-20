@@ -20,14 +20,19 @@ $(document).ready(function() {
 			compGrid.append($('<div class="block ' + item.class + '"><h6>' + item.name + '</div>'));
 		});
 		
+		compGrid.find('.block').draggable();
+/*
 		compGrid.shapeshift({
 			dragClone: true
 		});
+*/
 	});
 	
+/*
 	$('#stage .grid').shapeshift({
 		colWidth: 50,
 		align: 'left',
+		cloneSelected: true
 	});
 	
 	$('#stage .grid').on('ss-added', function(e, selected) {
@@ -36,6 +41,7 @@ $(document).ready(function() {
 		
 		
 	});
+*/
 	
 	socket.emit('blocks');	
 });
