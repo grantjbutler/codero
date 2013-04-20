@@ -2,6 +2,8 @@ function Runner(blocks, socket, sphero) {
 	this.blocks = blocks;
 	this.socket = socket;
 	this.sphero = sphero;
+	
+	this.heading = 0;
 }
 
 Runner.prototype.run = function run() {
@@ -52,6 +54,14 @@ Runner.prototype.done = function() {
 	this.socket.emit('done');
 }
 
+Runner.prototype.setHeading = function(heading) {
+	this.heading = heading;
+}
+
+Runner.prototype.getHeading = function() {
+	return this.heading;
+}
+
 Runner.Blocks = {};
 Runner.Blocks['go-forward'] = function(block, sphero, runner, cb) {
 	var speed = 0.5;
@@ -60,19 +70,21 @@ Runner.Blocks['go-forward'] = function(block, sphero, runner, cb) {
 		speed = block.params.speed;
 	}
 	
-	sphero.roll(0, speed, function() {
+	sphero.roll(runner.getHeading(), speed, function() {
 		setTimeout(function() {
-			sphero.roll(0, 0);
-			
-			cb();
+			sphero.roll(runner.getHeading(), 0, function() {
+				cb();
+			});
 		}, block.params.time * 1000);
 	});
 };
 
 Runner.Blocks['set-heading'] = function(block, sphero, runner, cb) {
-	sphero.setHeading(block.params.heading, function() {
+	runner.setHeading(block.params.heading);
+	
+	setTimeout(function() {
 		cb();
-	})
+	}, 250);
 };
 
 Runner.Blocks['change-led'] = function(block, sphero, runner, cb) {

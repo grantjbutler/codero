@@ -47,7 +47,7 @@ $(document).ready(function() {
 		var compGrid = $('#components .grid');
 		
 		data.forEach(function(item) {
-			compGrid.append($('<div class="block block-class-' + item.class + ' block-type-' + item.type + '"><h6>' + item.name + '</div>'));
+			compGrid.append($('<div class="block block-class-' + item.class + ' block-type-' + item.type + '"><h4>' + item.name + '</h4></div>'));
 		});
 		
 		blocks = data;
@@ -69,6 +69,9 @@ $(document).ready(function() {
 				view.attr('id', blockID);
 				view.removeClass('ui-draggable');
 				view.removeClass('ui-draggable-dragging');
+				
+				ui.offset.top += 10; // This is to take into account the margin;
+				ui.offset.left += 10; // This is to take into account the margin;
 				
 				setTimeout(function() {
 					jsPlumb.addEndpoint(blockID, TargetEndpoint);

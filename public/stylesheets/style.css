@@ -43,8 +43,12 @@ h1, h2, h3, h4, h5, h6 {
 	border-left: 1px solid #4c4c4c;
 }
 
+#components .block {
+	margin: 10px;
+}
+
 #paramPane {
-	width: 250px;
+	width: 230px;
 	position: absolute;
 	right: 0;
 	top: 50%;
@@ -52,10 +56,13 @@ h1, h2, h3, h4, h5, h6 {
 	background-color: #373c64;
 	border-left: 1px solid #4c4c4c;
 	border-top: 1px solid #4c4c4c;
+	color: #eeeeee;
+	padding: 10px;
 }
 
 a {
 	color: #00B7FF;
+	text-decoration: none;
 }
 
 .block {
@@ -72,7 +79,8 @@ a {
 }
 
 .block.active {
-	-webkit-box-shadow: #71b6eb 0px 0px 15px !important;
+/* color: #52b558 */
+	-webkit-box-shadow: #21bd2b 0px 0px 15px !important;
 }
 
 #start-block {
