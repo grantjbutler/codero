@@ -1,6 +1,22 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#titleBar {
+	height:50px;
+	width:70%;
+	font:16px;
+	background-color:blue;
+}
+
+#stage {
+	width:70%;
+	background-color:yellow;
+}
+
+#components {
+	width:30%;
+	background-color: black;
 }
 
 a {
