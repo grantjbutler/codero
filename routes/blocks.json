@@ -40,11 +40,6 @@
 		]
 	},
 	{
-		"name": "Stop",
-		"class": "stop",
-		"type": "command"
-	},
-	{
 		"name": "Turn Left",
 		"class": "turn-left",
 		"type": "command",
