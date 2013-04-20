@@ -8,72 +8,30 @@
 				{
 					"label": "Seconds",
 					"name": "time",
-					"type": "field",
-					"optional": true
+					"type": "field"
 				},
 				{
-					"label": "Rotations",
-					"name": "rotation",
-					"type": "field",
-					"optional": true
+					"label": "Speed",
+					"name": "speed",
+					"type": "slider",
+					"optional": true,
+					"min": 0.0,
+					"max": 1.0
 				}
 			]
 		]
 	},
 	{
-		"name": "Go Backward",
-		"class": "go-backward",
+		"name": "Set Heading",
+		"class": "set-heading",
 		"type": "command",
 		"params": [
-			{
-				"label": "Seconds",
-				"name": "time",
-				"type": "field",
-				"optional": true
-			},
-			{
-				"label": "Rotations",
-				"name": "rotation",
-				"type": "field",
-				"optional": true
-			}
-		]
-	},
-	{
-		"name": "Turn Left",
-		"class": "turn-left",
-		"type": "command",
-		"params": [
-			{
-				"label": "Seconds",
-				"name": "time",
-				"type": "field",
-				"optional": true
-			},
 			{
 				"label": "Degrees",
 				"name": "heading",
 				"type": "field",
-				"optional": true
-			}
-		]
-	},
-	{
-		"name": "Turn Right",
-		"class": "turn-right",
-		"type": "command",
-		"params": [
-			{
-				"label": "Seconds",
-				"name": "time",
-				"type": "field",
-				"optional": true
-			},
-			{
-				"label": "Degrees",
-				"name": "heading",
-				"type": "field",
-				"optional": true
+				"min": 0,
+				"max": 359
 			}
 		]
 	},

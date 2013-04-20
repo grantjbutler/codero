@@ -4,6 +4,7 @@
  */
 
 var express = require('express')
+  , socketIO = require('socket.io')
   , routes = require('./routes')
   , api = require('./routes/api')
   , http = require('http')
@@ -32,15 +33,10 @@ sphero.on('connect', function(ball) {
 	});
 	
 	app.get('/', routes.index);
-	app.get('/api/blocks', api.blocks);
-	app.post('/api/run', function(req, res) {
-		api.run(req, res, ball);
-	});
-	app.post('/api/execute', function(req, res) {
-		api.execute(req, res, sphero);
-	})
 	
-	http.createServer(app).listen(app.get('port'), function(){
+	var server = http.createServer(app);
+	socketIO.listen(server);
+	server.listen(app.get('port'), function(){
 	  console.log("Express server listening on port " + app.get('port'));
 	});
 });
