@@ -13,5 +13,8 @@
   "author": "Grant Butler and Luke Greenleaf",
   "license": "BSD",
   "readmeFilename": "README.md",
-  "gitHead": "1939a73e3351572cdac18c5326655879abc0232e"
+  "gitHead": "1939a73e3351572cdac18c5326655879abc0232e",
+  "dependencies": {
+    "node-sphero": "*"
+  }
 }
