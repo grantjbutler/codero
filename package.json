@@ -15,6 +15,6 @@
   "readmeFilename": "README.md",
   "gitHead": "1939a73e3351572cdac18c5326655879abc0232e",
   "dependencies": {
-    "node-sphero": "*"
+    "node-sphero": "git://github.com/grantjbutler/node-sphero.git"
   }
 }
