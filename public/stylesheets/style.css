@@ -1,21 +1,33 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+ 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+ 	padding: 0;
+ 	margin: 0;
 }
 
 #titleBar {
-	height:50px;
-	width:70%;
+	height: 50px;
+	position: absolute;
+	right: 250px;
+	left: 0;
 	font:16px;
 	background-color:blue;
 }
 
 #stage {
-	width:70%;
 	background-color:yellow;
+	position:absolute;
+	right: 250px;
+	left: 0;
+	top: 50px;
+	bottom: 0;
 }
 
 #components {
-	width:30%;
+	width: 250px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
 	background-color: black;
 }
 
