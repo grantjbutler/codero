@@ -6,7 +6,7 @@
 var express = require('express')
   , socketIO = require('socket.io')
   , routes = require('./routes')
-  , api = require('./routes/api')
+  , require('./api').api(socketIO)
   , http = require('http')
   , path = require('path')
   , Sphero = require('Sphero').Sphero;
