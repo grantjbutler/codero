@@ -3,53 +3,39 @@
 		"name": "Go Forward",
 		"class": "go-forward",
 		"type": "command",
-		"label": "Method"
-		"panels": [
-			{
-				"title": "Time",
-				"params": [
-					"label": "Seconds"
+		"params": [
+			[
+				{
+					"label": "Seconds",
 					"name": "time",
 					"type": "field",
-				]
-			},
-			{
-				"title": "Rotations",
-				"params": [
+					"optional": true
+				},
+				{
 					"label": "Rotations",
 					"name": "rotation",
-					"type": "field"
-				]
-			},
-			{
-				"title": "Indefinitely",
-			}
+					"type": "field",
+					"optional": true
+				}
+			]
 		]
 	},
 	{
 		"name": "Go Backward",
 		"class": "go-backward",
 		"type": "command",
-		"label": "Method"
-		"panels": [
+		"params": [
 			{
-				"title": "Time",
-				"params": [
-					"label": "Seconds"
-					"name": "time",
-					"type": "field",
-				]
+				"label": "Seconds",
+				"name": "time",
+				"type": "field",
+				"optional": true
 			},
 			{
-				"title": "Rotations",
-				"params": [
-					"label": "Rotations",
-					"name": "rotation",
-					"type": "field"
-				]
-			},
-			{
-				"title": "Indefinitely",
+				"label": "Rotations",
+				"name": "rotation",
+				"type": "field",
+				"optional": true
 			}
 		]
 	},
@@ -62,26 +48,18 @@
 		"name": "Turn Left",
 		"class": "turn-left",
 		"type": "command",
-		"label": "Method"
-		"panels": [
+		"params": [
 			{
-				"title": "Time",
-				"params": [
-					"label": "Seconds"
-					"name": "time",
-					"type": "field",
-				]
+				"label": "Seconds",
+				"name": "time",
+				"type": "field",
+				"optional": true
 			},
 			{
-				"title": "Heading",
-				"params": [
-					"label": "Degrees",
-					"name": "heading",
-					"type": "field"
-				]
-			},
-			{
-				"title": "Indefinitely",
+				"label": "Degrees",
+				"name": "heading",
+				"type": "field",
+				"optional": true
 			}
 		]
 	},
@@ -89,26 +67,18 @@
 		"name": "Turn Right",
 		"class": "turn-right",
 		"type": "command",
-		"label": "Method"
-		"panels": [
+		"params": [
 			{
-				"title": "Time",
-				"params": [
-					"label": "Seconds"
-					"name": "time",
-					"type": "field",
-				]
+				"label": "Seconds",
+				"name": "time",
+				"type": "field",
+				"optional": true
 			},
 			{
-				"title": "Heading",
-				"params": [
-					"label": "Degrees",
-					"name": "heading",
-					"type": "field"
-				]
-			},
-			{
-				"title": "Indefinitely",
+				"label": "Degrees",
+				"name": "heading",
+				"type": "field",
+				"optional": true
 			}
 		]
 	},
@@ -120,17 +90,23 @@
 			{
 				"title": "Red",
 				"name": "red",
-				"type": "field"
+				"type": "field",
+				"min": 0,
+				"max": 255
 			},
 			{
 				"title": "Green",
 				"name": "green",
-				"type": "field"
+				"type": "field",
+				"min": 0,
+				"max": 255
 			},
 			{
 				"title": "Blue",
 				"name": "blue",
-				"type": "field"
+				"type": "field",
+				"min": 0,
+				"max": 255
 			}
 		]
 	}
