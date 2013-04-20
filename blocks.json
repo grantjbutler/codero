@@ -6,12 +6,12 @@
 		"params": [
 			[
 				{
-					"label": "Seconds",
+					"title": "Seconds",
 					"name": "time",
 					"type": "number"
 				},
 				{
-					"label": "Speed",
+					"title": "Speed",
 					"name": "speed",
 					"type": "number",
 					"optional": true,
@@ -27,7 +27,7 @@
 		"type": "command",
 		"params": [
 			{
-				"label": "Degrees",
+				"title": "Degrees",
 				"name": "heading",
 				"type": "number",
 				"min": 0,
