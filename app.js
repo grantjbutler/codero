@@ -40,10 +40,14 @@ server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
 
-var API = new api.API(io);
+var API = new api.API(io, sphero);
 
 sphero.on('connect', function(ball) {
-	API.sphero = ball;
+/* 	API.sphero = ball; */
+	
+	ball.setRGBLED(255, 0, 0, false);
+	
+/* 	API.sphero = ball; */
 });
 
 sphero.connect();

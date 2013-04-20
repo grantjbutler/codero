@@ -19,7 +19,7 @@ Runner.prototype.runNextBlock = function() {
 		return;
 	}
 	
-	var currentBlock = this.blocks[this.currentBlock];
+	var currentBlock = this.blocks[this.currentBlockIndex];
 	
 	if(!(currentBlock.class in Runner.Blocks)) {
 		this.error({
@@ -35,9 +35,11 @@ Runner.prototype.runNextBlock = function() {
 	
 	this.socket.emit('run', { 'block': currentBlock.id });
 	
+	var self = this;
+	
 	func(currentBlock, this.sphero, this, function() {
 		setTimeout(function() {
-			this.runNextBlock();
+			self.runNextBlock();
 		}, 0);
 	});
 }
@@ -78,3 +80,5 @@ Runner.Blocks['change-led'] = function(block, sphero, runner, cb) {
 		cb();
 	});
 };
+
+exports.Runner = Runner;

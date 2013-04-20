@@ -1,12 +1,9 @@
 var fs = require('fs'),
 	path = require('path'),
+	Runner = require('./runner').Runner,
 	allBlocks = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'blocks.json')));
 
-exports.API = function(io) {
-	this.sphero = null;
-	
-	var self = this;
-	
+exports.API = function(io, sphero) {
 	io.sockets.on('connection', function(socket) {
 		socket.on('blocks', function() {
 			console.log('emitting blocks');
@@ -15,7 +12,7 @@ exports.API = function(io) {
 		});
 		
 		socket.on('run', function(blocks) {
-			var aRunner = new Runner(blocks, socket, self.sphero);
+			var aRunner = new Runner(blocks, socket, sphero);
 			aRunner.run();
 		});
 	});
