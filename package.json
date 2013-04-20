@@ -1,21 +1,12 @@
 {
-  "name": "codero",
+  "name": "application-name",
   "version": "0.0.1",
-  "description": "Learn programming using Sphero.",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/grantjbutler/codero.git"
-  },
-  "author": "Grant Butler and Luke Greenleaf",
-  "license": "BSD",
-  "readmeFilename": "README.md",
-  "gitHead": "1939a73e3351572cdac18c5326655879abc0232e",
   "dependencies": {
-    "node-sphero": "git://github.com/grantjbutler/node-sphero.git",
-    "express": "*"
+    "express": "3.0.1",
+    "jade": "*"
   }
 }
