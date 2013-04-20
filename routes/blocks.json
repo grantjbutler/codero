@@ -1,0 +1,137 @@
+[
+	{
+		"name": "Go Forward",
+		"class": "go-forward",
+		"type": "command",
+		"label": "Method"
+		"panels": [
+			{
+				"title": "Time",
+				"params": [
+					"label": "Seconds"
+					"name": "time",
+					"type": "field",
+				]
+			},
+			{
+				"title": "Rotations",
+				"params": [
+					"label": "Rotations",
+					"name": "rotation",
+					"type": "field"
+				]
+			},
+			{
+				"title": "Indefinitely",
+			}
+		]
+	},
+	{
+		"name": "Go Backward",
+		"class": "go-backward",
+		"type": "command",
+		"label": "Method"
+		"panels": [
+			{
+				"title": "Time",
+				"params": [
+					"label": "Seconds"
+					"name": "time",
+					"type": "field",
+				]
+			},
+			{
+				"title": "Rotations",
+				"params": [
+					"label": "Rotations",
+					"name": "rotation",
+					"type": "field"
+				]
+			},
+			{
+				"title": "Indefinitely",
+			}
+		]
+	},
+	{
+		"name": "Stop",
+		"class": "stop",
+		"type": "command"
+	},
+	{
+		"name": "Turn Left",
+		"class": "turn-left",
+		"type": "command",
+		"label": "Method"
+		"panels": [
+			{
+				"title": "Time",
+				"params": [
+					"label": "Seconds"
+					"name": "time",
+					"type": "field",
+				]
+			},
+			{
+				"title": "Heading",
+				"params": [
+					"label": "Degrees",
+					"name": "heading",
+					"type": "field"
+				]
+			},
+			{
+				"title": "Indefinitely",
+			}
+		]
+	},
+	{
+		"name": "Turn Right",
+		"class": "turn-right",
+		"type": "command",
+		"label": "Method"
+		"panels": [
+			{
+				"title": "Time",
+				"params": [
+					"label": "Seconds"
+					"name": "time",
+					"type": "field",
+				]
+			},
+			{
+				"title": "Heading",
+				"params": [
+					"label": "Degrees",
+					"name": "heading",
+					"type": "field"
+				]
+			},
+			{
+				"title": "Indefinitely",
+			}
+		]
+	},
+	{
+		"name": "Change LED",
+		"class": "change-led",
+		"type": "command",
+		"params": [
+			{
+				"title": "Red",
+				"name": "red",
+				"type": "field"
+			},
+			{
+				"title": "Green",
+				"name": "green",
+				"type": "field"
+			},
+			{
+				"title": "Blue",
+				"name": "blue",
+				"type": "field"
+			}
+		]
+	}
+]
