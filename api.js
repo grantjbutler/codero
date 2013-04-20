@@ -1,13 +1,21 @@
 var fs = require('fs'),
 	path = require('path'),
-	allBlocks = fs.readFileSync(path.resolve(__dirname, 'blocks.json'));
+	allBlocks = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'blocks.json')));
 
-exports.api = function(io, sphero) {
+exports.API = function(io) {
+	this.sphero = null;
+	
+	var self = this;
+	
 	io.sockets.on('connection', function(socket) {
-		socket.emit('blocks', allBlocks);
+		socket.on('blocks', function() {
+			console.log('emitting blocks');
+			
+			socket.emit('blocks', allBlocks);
+		});
 		
 		socket.on('run', function(blocks) {
-			var aRunner = new Runner(blocks, socket, sphero);
+			var aRunner = new Runner(blocks, socket, self.sphero);
 			aRunner.run();
 		});
 	});
